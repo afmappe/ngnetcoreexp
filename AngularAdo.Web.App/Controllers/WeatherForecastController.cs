@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AngularAdo.Web.App.Controllers
 {
@@ -19,6 +20,7 @@ namespace AngularAdo.Web.App.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IEnumerable<WeatherForecast> Get()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast

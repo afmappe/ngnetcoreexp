@@ -5,11 +5,13 @@ namespace AngularAdo.Web.App.Employee
 {
     public class EmpleadoAccessData
     {
+        private readonly IConfiguration _configuration;
         private readonly string _ConnectionString;
 
-        public EmpleadoAccessData()
+        public EmpleadoAccessData(IConfiguration configuration)
         {
-            this._ConnectionString = "data source=localhost;initial catalog=BD_Empresa;user id=sa;password=123";
+            _configuration = configuration;
+            _ConnectionString = _configuration.GetValue<string>(SettingKeys.Database_ConnectionString);
         }
 
         public string Create(EmpleadoEntity entity)

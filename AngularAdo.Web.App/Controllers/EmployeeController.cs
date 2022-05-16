@@ -1,9 +1,11 @@
 ﻿using AngularAdo.Web.App.DTOs;
 using AngularAdo.Web.App.Employee;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AngularAdo.Web.App.Controllers
 {
+    [Authorize]
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]", Name = "EmployeeV1")]

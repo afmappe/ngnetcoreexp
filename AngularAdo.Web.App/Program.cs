@@ -23,6 +23,7 @@ builder.Services.AddMvc()
 builder.Services.AddControllersWithViews();
 builder.Services.ConfigureApiVersioning();
 builder.Services.ConfigureApiDocumentation();
+builder.Services.ConfigureAuthentication(builder.Configuration);
 
 // Add services to the container.
 builder.Services.AddScoped<EmpleadoAccessData>();
