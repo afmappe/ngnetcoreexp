@@ -3,8 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AngularAdo.Web.App.Controllers
 {
+    [Authorize]
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -19,8 +20,7 @@ namespace AngularAdo.Web.App.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        [AllowAnonymous]
+        [HttpGet]        
         public IEnumerable<WeatherForecast> Get()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast

@@ -45,6 +45,7 @@ namespace AngularAdo.Web.App.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult<IEnumerable<EmpleadoEntity>> Get()
         {
             var list = _empleadoAccessData.ListAll();

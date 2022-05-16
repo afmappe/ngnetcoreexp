@@ -32,14 +32,14 @@ namespace AngularAdo.Web.App.Controllers
 
         [AllowAnonymous]
         [HttpPost("LoginUser")]
-        public IActionResult LoginUser(LoginUserRequest request)
+        public ActionResult<string> LoginUser(LoginUserRequest request)
         {
             var token = GenerateUserToken(Guid.NewGuid().ToString("n"), request.UserName);
             return new OkObjectResult(token);
         }
 
         [HttpGet("message")]
-        public IActionResult TestUser(string message)
+        public ActionResult<string> TestUser(string message)
         {
             string result = null;
             var user = _contextAccessor.HttpContext.User;
