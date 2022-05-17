@@ -44,6 +44,37 @@ namespace AngularAdo.Web.App.Employee
             return result;
         }
 
+        public EmpleadoEntity GetById(int id)
+        {
+            EmpleadoEntity result = null;
+            using (var conn = this.OpenConnection())
+            {
+                using SqlCommand command = new SqlCommand("usp_Empleado_Filtar_Id", conn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                command.Parameters.Add(new SqlParameter("@Codi_Empleado", SqlDbType.Int)).Value = id;
+                using SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    result= new EmpleadoEntity
+                    {
+                        CodigoEmpleado = Convert.ToInt32(reader["Codi_Empleado"]),
+                        NombresEmpleado = reader["Nombres_Empleado"].ToString(),
+                        ApellidosEmpleado = reader["Apellidos_Empleado"].ToString().Trim(),
+                        DireccionEmpleado = reader["Direccion_Empleado"].ToString().Trim(),
+                        TelefonoEmpleado = reader["Telefono_Empleado"].ToString().Trim(),
+                        EmailEmpleado = reader["Email_Empleado"].ToString().Trim(),
+                        FechaNacimientoEmpleado = Convert.ToDateTime(reader["FechaNacimiento_Empleado"]),
+                        SueldoEmpleado = Convert.ToDouble(reader["Sueldo_Empleado"]),
+                        Activo = Convert.ToBoolean(reader["Activo"])
+                    };
+                }
+                return result;
+            }
+        }
+
         public List<EmpleadoEntity> ListAll()
         {
             var result = new List<EmpleadoEntity>();
@@ -60,7 +91,7 @@ namespace AngularAdo.Web.App.Employee
                 {
                     EmpleadoEntity item = new EmpleadoEntity
                     {
-                        CodiEmpleado = Convert.ToInt32(reader["Codi_Empleado"]),
+                        CodigoEmpleado = Convert.ToInt32(reader["Codi_Empleado"]),
                         NombresEmpleado = reader["Nombres_Empleado"].ToString(),
                         ApellidosEmpleado = reader["Apellidos_Empleado"].ToString().Trim(),
                         DireccionEmpleado = reader["Direccion_Empleado"].ToString().Trim(),
@@ -72,6 +103,36 @@ namespace AngularAdo.Web.App.Employee
                     };
 
                     result.Add(item);
+                }
+            }
+            return result;
+        }
+
+        public string Update(EmpleadoEntity entity)
+        {
+            string result = null;
+
+            if (entity != null)
+            {
+                using (var conn = this.OpenConnection())
+                {
+                    using SqlCommand command = new SqlCommand("usp_Empleado_Modificar", conn)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+                    command.Parameters.Add(new SqlParameter("@Codi_Empleado", SqlDbType.Int)).Value = entity.CodigoEmpleado;
+                    command.Parameters.Add(new SqlParameter("@Nombres_Empleado", SqlDbType.VarChar, 100)).Value = entity.NombresEmpleado;
+                    command.Parameters.Add(new SqlParameter("@Apellidos_Empleado", SqlDbType.VarChar, 100)).Value = entity.ApellidosEmpleado;
+                    command.Parameters.Add(new SqlParameter("@Direccion_Empleado", SqlDbType.VarChar, 200)).Value = entity.DireccionEmpleado;
+                    command.Parameters.Add(new SqlParameter("@Telefono_Empleado", SqlDbType.VarChar, 200)).Value = entity.TelefonoEmpleado;
+                    command.Parameters.Add(new SqlParameter("@Email_Empleado", SqlDbType.VarChar, 200)).Value = entity.EmailEmpleado;
+                    command.Parameters.Add(new SqlParameter("@FechaNacimiento_Empleado", SqlDbType.DateTime)).Value = entity.FechaNacimientoEmpleado;
+                    command.Parameters.Add(new SqlParameter("@Sueldo_Empleado", SqlDbType.Real)).Value = entity.SueldoEmpleado;
+                    command.Parameters.Add(new SqlParameter("@Activo", SqlDbType.VarChar, 100)).Value = entity.Activo;
+
+                    command.ExecuteNonQuery();
+
+                    result = $"User {entity.CodigoEmpleado} Updated";
                 }
             }
             return result;

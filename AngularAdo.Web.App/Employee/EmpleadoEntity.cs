@@ -4,7 +4,7 @@
     {
         public bool Activo { get; set; }
         public string ApellidosEmpleado { get; set; }
-        public int CodiEmpleado { get; set; }
+        public int CodigoEmpleado { get; set; }
         public string DireccionEmpleado { get; set; }
         public string EmailEmpleado { get; set; }
         public DateTime FechaNacimientoEmpleado { get; set; }

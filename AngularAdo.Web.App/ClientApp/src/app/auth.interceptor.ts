@@ -13,7 +13,6 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(@Inject('BASE_URL') private baseUrl: string,) { }
 
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    debugger
     const idToken = localStorage.getItem("id_token");
 
     var url = `${this.baseUrl}${req.url}`;

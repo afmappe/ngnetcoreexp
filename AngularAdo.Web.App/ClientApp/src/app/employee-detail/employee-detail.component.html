@@ -1,0 +1,125 @@
+<div *ngIf="model" class="container">
+  <h1>Employee Form</h1>
+  <form (ngSubmit)="save()" #employeeForm="ngForm">
+    <div class="form-group">
+      <label for="nombres">Nombres</label>
+      <input
+        type="text"
+        name="nombres"
+        id="nombres"
+        required
+        [(ngModel)]="model.nombres"
+        #name="ngModel"
+      />
+      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+        Nombre es requerido
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="apellidos">Apellidos</label>
+      <input
+        type="text"
+        name="apellidos"
+        id="apellidos"
+        required
+        [(ngModel)]="model.apellidos"
+        #apellidos="ngModel"
+      />
+      <div
+        [hidden]="apellidos.valid || apellidos.pristine"
+        class="alert alert-danger"
+      >
+        Apellidos es requerido
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="text"
+        name="email"
+        id="email"
+        required
+        email
+        [(ngModel)]="model.email"
+        #email="ngModel"
+      />
+      <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+        <div *ngIf="email.errors?.['required']">Email es Requerido</div>
+        <div *ngIf="email.errors?.['email']">Formato invalido</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="direccion">Direccion</label>
+      <input
+        type="text"
+        name="direccion"
+        id="direccion"
+        required
+        [(ngModel)]="model.direccion"
+        #direccion="ngModel"
+      />
+      <div
+        [hidden]="direccion.valid || direccion.pristine"
+        class="alert alert-danger"
+      >
+        Direccion es requerido
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="telefono">Telefono</label>
+      <input
+        type="text"
+        name="telefono"
+        id="telefono"
+        required
+        [(ngModel)]="model.telefono"
+        #telefono="ngModel"
+      />
+      <div
+        [hidden]="telefono.valid || telefono.pristine"
+        class="alert alert-danger"
+      >
+        Telefono es requerido
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="fechaNacimiento">Fecha de Nacimiento</label>
+      <input
+        type="date"
+        name="fechaNacimiento"
+        id="fechaNacimiento"
+        required
+        [(ngModel)]="model.fechaNacimiento"
+        #fechaNacimiento="ngModel"
+      />
+      <div
+        [hidden]="fechaNacimiento.valid || fechaNacimiento.pristine"
+        class="alert alert-danger"
+      >
+        Fecha de Nacimiento es requerido
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-success"
+      [disabled]="!employeeForm.form.valid || !employeeForm.dirty"
+    >
+      Save
+    </button>
+
+    <button
+      type="button"
+      class="btn btn-default"
+      (click)="newEmployee(); employeeForm.reset()"
+    >
+      New Hero
+    </button>
+  </form>
+</div>
+{{ model | json }}
