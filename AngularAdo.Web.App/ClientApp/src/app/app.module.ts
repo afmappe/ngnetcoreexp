@@ -11,6 +11,7 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { AuthInterceptor } from './auth.interceptor';
 import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { EmployeeDetailComponent } from './employee-detail/employee-detail.compo
     CounterComponent,
     FetchDataComponent,
     EmployeeDetailComponent,
+    EmployeeListComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -29,7 +31,7 @@ import { EmployeeDetailComponent } from './employee-detail/employee-detail.compo
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'employee-detail/:id', component: EmployeeDetailComponent },
+      { path: 'employee-detail', component: EmployeeListComponent },
     ]),
   ],
   providers: [

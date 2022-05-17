@@ -1,0 +1,39 @@
+<h1 id="tableLabel">Employes</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<p *ngIf="!employes"><em>Loading...</em></p>
+
+<div class="container-emp">
+  <div class="container-child">
+    <button type="button" class="btn btn-default" (click)="onNewEmployee()">
+      Nuevo
+    </button>
+    <table
+      class="table table-striped"
+      aria-labelledby="tableLabel"
+      *ngIf="employes"
+    >
+      <thead>
+        <tr>
+          <th>Nombres</th>
+          <th>Apellidos</th>
+          <th>Email</th>
+          <th>Telefono</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of employes">
+          <td>{{ item.nombres }}</td>
+          <td>{{ item.apellidos }}</td>
+          <td>{{ item.email }}</td>
+          <td>{{ item.telefono }}</td>
+          <td><button (click)="onSelected(item)">Ver</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="container-child">
+    <app-employee-detail [model]="current"></app-employee-detail>
+  </div>
+</div>

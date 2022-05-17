@@ -104,21 +104,13 @@
         Fecha de Nacimiento es requerido
       </div>
     </div>
-
+    <br />
     <button
       type="submit"
       class="btn btn-success"
       [disabled]="!employeeForm.form.valid || !employeeForm.dirty"
     >
       Save
-    </button>
-
-    <button
-      type="button"
-      class="btn btn-default"
-      (click)="newEmployee(); employeeForm.reset()"
-    >
-      New Hero
     </button>
   </form>
 </div>

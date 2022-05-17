@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import * as moment from 'moment';
+import { Employee } from '../Employee';
 
 @Component({
   selector: 'app-employee-detail',
@@ -10,26 +11,11 @@ import * as moment from 'moment';
   styleUrls: ['./employee-detail.component.css'],
 })
 export class EmployeeDetailComponent implements OnInit {
-  public model?: Employee;
+  @Input() model?: Employee;
 
-  constructor(
-    private http: HttpClient,
-    private activatedRoute: ActivatedRoute,
-    private router: Router
-  ) {}
+  constructor(private http: HttpClient) {}
 
-  ngOnInit(): void {
-    this.initComponent();
-  }
-
-  initComponent(): void {
-    const id = parseInt(this.activatedRoute.snapshot.paramMap.get('id')!, 10);
-    if (id !== 0) {
-      this.getEmployee(id);
-    } else {
-      this.model = new Employee(0, '', '', '', '', 0, '');
-    }
-  }
+  ngOnInit(): void {}
 
   save(): void {
     var body: Employee = Object.assign({}, this.model);
@@ -39,11 +25,6 @@ export class EmployeeDetailComponent implements OnInit {
     } else {
       this.updateEmployee(body);
     }
-  }
-
-  newEmployee(): void {
-    this.model = new Employee(0, '', '', '', '', 0, '');
-    this.router.navigateByUrl('/employee-detail/0');
   }
 
   private getEmployee(id: number) {
@@ -84,17 +65,4 @@ export class EmployeeDetailComponent implements OnInit {
         );
     }
   }
-}
-
-export class Employee {
-  constructor(
-    public id: number,
-    public apellidos: string,
-    public direccion: string,
-    public email: string,
-    public nombres: string,
-    public sueldo: number,
-    public telefono: string,
-    public fechaNacimiento?: string
-  ) {}
 }
