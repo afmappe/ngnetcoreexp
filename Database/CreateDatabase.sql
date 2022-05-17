@@ -132,6 +132,25 @@ GO
 USE BD_Empresa;
 GO
 
+-------------Obtener un Empleado----------------
+CREATE Procedure usp_Empleado_Filtar_Id
+@Codi_Empleado			int
+AS
+	SELECT 
+		Codi_Empleado			,
+		Nombres_Empleado		,
+		Apellidos_Empleado		,
+		Direccion_Empleado		,
+		Telefono_Empleado		,
+		Email_Empleado			,
+		FechaNacimiento_Empleado	,
+		Sueldo_Empleado			,
+		Activo						
+	FROM Tb_Empleado
+	WHERE Codi_Empleado = @Codi_Empleado	
+GO
+
+
 EXEC usp_Empleado_Registrar 
 	@Nombres_Empleado = 'Andres Felipe',
 	@Apellidos_Empleado ='Mape Medina',
