@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 
 import * as moment from 'moment';
 import { Employee } from '../Employee';
@@ -25,6 +24,11 @@ export class EmployeeDetailComponent implements OnInit {
     } else {
       this.updateEmployee(body);
     }
+  }
+
+  onDateChange(employee: Employee) {
+    debugger;
+    return moment(employee.fechaNacimiento).format('yyyy-MM-DD');
   }
 
   private getEmployee(id: number) {

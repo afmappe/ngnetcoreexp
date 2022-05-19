@@ -95,6 +95,7 @@
         id="fechaNacimiento"
         required
         [(ngModel)]="model.fechaNacimiento"
+        (ngModelChange)="model.fechaNacimiento = onDateChange(model)"
         #fechaNacimiento="ngModel"
       />
       <div

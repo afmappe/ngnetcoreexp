@@ -1,0 +1,67 @@
+footer {
+  width: 100%;
+  padding: 50px 0px;
+  background-size: cover;
+  background-color: #030303;
+}
+.container_footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: auto;
+}
+.Box_footer {
+  display: flex;
+  flex-direction: column;
+}
+.logo_footer {
+  background-image: url("../../assets/images/Logo.png");
+  background-size: cover;
+  display: inline-block;
+  height: 300px;
+}
+
+.Box_footer .terms {
+  max-width: 350px;
+  margin-top: 20px;
+  font-weight: 500px;
+  color: #7a7a7a;
+  font-size: 18px;
+}
+.Box_footer h2 {
+  margin-top: 0;
+  margin-bottom: 30px;
+  color: #343434;
+  font-weight: 700;
+}
+.Box_footer a {
+  margin-top: 10px;
+  color: #7a7a7a;
+  font-weight: 600;
+}
+.Box_footer a:hover {
+  opacity: 0.8;
+}
+.Box_footer a .fab {
+  font-size: 20px;
+}
+.box_copyright {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+  padding: 0px 40px;
+}
+.box_copyright p {
+  margin-top: 20px;
+  color: #7a7a7a;
+}
+.box_copyright hr {
+  border: none;
+  height: 1px;
+  background-color: #7a7a7a;
+}
+.fa-brands {
+  margin-right: 5px;
+}

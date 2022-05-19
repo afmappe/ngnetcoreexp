@@ -3,17 +3,16 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject, Subscription } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   login(email: string, password: string): Observable<boolean> {
-    debugger
-    var body = { userName: email, password:password };
+    var body = { userName: email, password: password };
     var subject = new Subject<boolean>();
-    this.http.post('api/v1/Authentication/LoginUser', body, { responseType: 'text' })
+    this.http
+      .post('api/v1/Authentication/LoginUser', body, { responseType: 'text' })
       .subscribe((token: string) => {
         this.setSession(token);
         subject.next(true);
@@ -23,7 +22,7 @@ export class AuthService {
   }
 
   logout(): boolean {
-    localStorage.removeItem("id_token");
+    localStorage.removeItem('id_token');
     return true;
   }
 

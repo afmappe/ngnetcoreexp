@@ -1,0 +1,30 @@
+<header>
+  <a href="index.html" class="logo">
+    <img src="../../assets/images/Logo.png" alt="Logo empresa" />
+    <h2 class="nombre-empresa">Centro Tecnologico Android</h2>
+  </a>
+  <nav>
+    <ul class="">
+      <li
+        class="nav-item"
+        [routerLinkActive]="['link-active']"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="['link-active']">
+        <a class="nav-link text-dark" [routerLink]="['/counter']">Counter</a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="['link-active']">
+        <a class="nav-link text-dark" [routerLink]="['/fetch-data']"
+          >Fetch data</a
+        >
+      </li>
+      <li class="nav-item" [routerLinkActive]="['link-active']">
+        <a class="nav-link text-dark" [routerLink]="['/employee-detail']"
+          >Employee detail</a
+        >
+      </li>
+    </ul>
+  </nav>
+</header>

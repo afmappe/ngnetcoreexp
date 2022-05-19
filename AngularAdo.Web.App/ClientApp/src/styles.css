@@ -60,3 +60,11 @@ code {
   background-color: #e6e6e6;
   border-color: #adadad;
 }
+
+#background {
+  height: 100hv;
+  color: #fff;
+  background-image: url("./assets/images/background.jpg");
+  background-size: 100%;
+  background-size: cover;
+}
